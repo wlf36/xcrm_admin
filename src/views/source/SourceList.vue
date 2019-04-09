@@ -37,7 +37,7 @@ export default {
   },
   data() {
     return {
-      tableColumn: [{ prop: 'name', label: '名称' }, { prop: 'description', label: '简介' }],
+      tableColumn: [{prop: 'id', label: "ID"}, { prop: 'name', label: '名称' }, { prop: 'description', label: '简介' }],
       tableData: [],
       operate: [],
       showEdit: false,

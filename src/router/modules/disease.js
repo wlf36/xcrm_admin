@@ -15,8 +15,9 @@ const DiseaseRouter = {
       path: '/disease/add',
       component: DiseaseAdd,
       meta: {
-        title: '添加病种',
+        title: '新建病种',
         icon: 'iconfont icon-demo',
+        auths: ['新建病种'],
       },
     },
     {
@@ -25,6 +26,7 @@ const DiseaseRouter = {
       meta: {
         title: '病种列表',
         icon: 'iconfont icon-demo',
+        auths: ['病种列表'],
       },
     },
   ],

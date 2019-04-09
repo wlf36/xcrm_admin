@@ -15,8 +15,9 @@ const SourceRouter = {
       path: '/source/add',
       component: SourceAdd,
       meta: {
-        title: '添加渠道',
+        title: '新建渠道',
         icon: 'iconfont icon-demo',
+        auths: ['新建渠道'],
       },
     },
     {
@@ -25,6 +26,7 @@ const SourceRouter = {
       meta: {
         title: '渠道列表',
         icon: 'iconfont icon-demo',
+        auths: ['渠道列表'],
       },
     },
   ],

@@ -5,45 +5,49 @@
       <line-chart :chart-data="lineChartData"/>
     </div>
 
-    <div class="title">导出数据</div>
-    <lin-1px></lin-1px>
-    <div class="wrap">
-      <el-row>
-        <el-col :lg="16" :md="20" :sm="24" :xs="24">
-          <div class="condition">
-            <el-dropdown style="margin: 0 10px;" @command="handleCommandStatus">
-              <el-button>
-                {{searchStatus}}
-                <i class="el-icon-arrow-down el-icon--right"></i>
-              </el-button>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item :command="['筛选客户']">筛选客户</el-dropdown-item>
-                <el-dropdown-item
-                  v-for="(status, index) in customer_status"
-                  :key="index"
-                  :command="[status]"
-                >{{status}}</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-            <lin-date-picker @dateChange="handleDateChange" ref="searchDate" class="date"></lin-date-picker>
+    <div v-auth="['导出数据']">
+      <div class="title">导出数据</div>
+      <lin-1px></lin-1px>
+      <div class="wrap">
+        <el-row>
+          <el-col :lg="16" :md="20" :sm="24" :xs="24">
+            <div class="condition">
+              <el-dropdown style="margin: 0 10px;" @command="handleCommandStatus">
+                <el-button>
+                  {{searchStatus}}
+                  <i class="el-icon-arrow-down el-icon--right"></i>
+                </el-button>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item :command="['筛选客户']">筛选客户</el-dropdown-item>
+                  <el-dropdown-item
+                    v-for="(status, index) in customer_status"
+                    :key="index"
+                    :command="[status]"
+                  >{{status}}</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+              <lin-date-picker @dateChange="handleDateChange" ref="searchDate" class="date"></lin-date-picker>
 
-            <el-button type="primary" @click="handleDownload">导出数据</el-button>
-          </div>
-        </el-col>
-      </el-row>
+              <el-button type="primary" @click="handleDownload">导出数据</el-button>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
     </div>
 
-    <div class="title">导入数据</div>
-    <lin-1px></lin-1px>
-    <div class="wrap">
-      <el-upload
-        class="upload-demo"
-        :action="uploadExcelApi"
-        :headers="headers"
-        :auto-upload="true"
-      >
-        <el-button size="small" type="primary">点击上传excel文件</el-button>
-      </el-upload>
+    <div v-auth="['导入数据']">
+      <div class="title">导入数据</div>
+      <lin-1px></lin-1px>
+      <div class="wrap">
+        <el-upload
+          class="upload-demo"
+          :action="uploadExcelApi"
+          :headers="headers"
+          :auto-upload="true"
+        >
+          <el-button size="small" type="primary">点击上传excel文件</el-button>
+        </el-upload>
+      </div>
     </div>
   </div>
 </template>
@@ -55,7 +59,7 @@ import PanelGroup from "./components/PanelGroup";
 import LineChart from "./components/LineChart";
 import DateRangeUtil from "@/lin/utils/date";
 import Config from "@/config/index";
-import { getToken } from "@/lin/utils/cookie"
+import { getToken } from "@/lin/utils/cookie";
 
 export default {
   components: {
@@ -66,7 +70,7 @@ export default {
   data() {
     return {
       headers: {
-        Authorization: getToken('access_token')
+        Authorization: getToken("access_token")
       },
       uploadExcelApi: `${Config.baseUrl}/cms/upload/excel`,
       downloadLoading: false,
@@ -94,7 +98,7 @@ export default {
     // console.log(DateRangeUtil.getPreviousMonth(), '上月')
     // console.log(DateRangeUtil.getPreviousSeason(), '上季度')
     // console.log(DateRangeUtil.getPreviousYear(), '上年度')
-    console.log('token', getToken('access_token'))
+    console.log("token", getToken("access_token"));
     this.getStatisticsCustomers(
       DateRangeUtil.getCurrentWeek()[0],
       DateRangeUtil.getCurrentWeek()[1]
@@ -128,9 +132,9 @@ export default {
     // };
   },
   methods: {
-    async _getTotalByDate(){
-      this.customerData = await customer.totalByDate()
-      console.log(this.customerData)
+    async _getTotalByDate() {
+      this.customerData = await customer.totalByDate();
+      console.log(this.customerData);
     },
     async getStatisticsCustomers(start, end) {
       let res = await customer.statisticsCustomers({

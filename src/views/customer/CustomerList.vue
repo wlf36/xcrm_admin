@@ -123,13 +123,13 @@ export default {
       pageCount: 10, // 每页10条数据
       loading: false,
       tableColumn: [
-        { prop: "name", label: "姓名", width: 80 },
+        { prop: "name", label: "姓名", width: 95 },
         { prop: "gender", label: "性别", width: 60 },
         { prop: "age", label: "年龄", width: 60 },
         { prop: "phone", label: "手机", width: 120 },
-        { prop: "address", label: "地址", width: 220 },
+        { prop: "address", label: "地址", width: 210 },
         { prop: "status", label: "状态", width: 60 },
-        { prop: "disease", label: "疾病", width: 120 },
+        { prop: "disease", label: "疾病", width: 110 },
         { prop: "order_time", label: "预约时间", width: 110 },
         { prop: "depart", label: "预约科室", width: 95 },
         { prop: "source", label: "来源渠道", width: 95 },

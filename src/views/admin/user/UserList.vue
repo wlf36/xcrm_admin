@@ -246,7 +246,7 @@ export default {
   async created() {
     await this.getAdminUsers()
     await this.getAllGroups()
-    this.tableColumn = [{ prop: 'nickname', label: '名称' }, { prop: 'group_name', label: '所属分组' }] // 设置表头信息
+    this.tableColumn = [{prop: 'id', label: 'ID'}, { prop: 'nickname', label: '名称' }, { prop: 'group_name', label: '所属分组' }] // 设置表头信息
     this.operate = [{ name: '编辑', func: 'handleEdit', type: 'edit' }, { name: '删除', func: 'handleDelete', type: 'del' }]
     // 监听添加用户是否成功
     this.eventBus.$on('addUser', async (flag) => {

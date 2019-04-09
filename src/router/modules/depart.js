@@ -15,8 +15,9 @@ const DepartRouter = {
       path: '/depart/add',
       component: DepartAdd,
       meta: {
-        title: '添加科室',
+        title: '新建科室',
         icon: 'iconfont icon-demo',
+        auths: ['新建科室'],
       },
     },
     {
@@ -25,6 +26,7 @@ const DepartRouter = {
       meta: {
         title: '科室列表',
         icon: 'iconfont icon-demo',
+        auths: ['科室列表'],
       },
     },
   ],

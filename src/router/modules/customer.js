@@ -16,8 +16,9 @@ const CustomerRouter = {
       path: '/customer/add',
       component: CustomerAdd,
       meta: {
-        title: '添加客户',
+        title: '新增客户',
         icon: 'iconfont icon-demo',
+        auths: ['新增客户'],
       },
     },
     {
@@ -26,6 +27,7 @@ const CustomerRouter = {
       meta: {
         title: '客户列表',
         icon: 'iconfont icon-demo',
+        auths: ['搜索客户'],
       },
     },
     {
@@ -34,6 +36,7 @@ const CustomerRouter = {
       meta: {
         title: '管理数据',
         icon: 'iconfont icon-demo',
+        auths: ['导出数据', '导入数据', '统计数据'],
       },
     },
   ],
