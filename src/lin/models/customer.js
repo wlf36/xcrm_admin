@@ -88,6 +88,11 @@ class Customer {
     return res
   }
 
+  async totalById() {
+    const res = await get('cms/customer/totalbyid')
+    return res
+  }
+
   async updateReaskUser(data) {
     console.log(data)
     const res = await put('cms/customer/reask', data)

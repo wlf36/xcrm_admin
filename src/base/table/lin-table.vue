@@ -1,6 +1,8 @@
 <template>
   <el-table
+    border    
     :data="tableData"
+    :row-class-name="rowStyle"
     @row-dblclick="rowClick"
     @selection-change="handleSelectionChange"
     @current-change="handleCurrentChange"
@@ -11,7 +13,7 @@
       :key="item.id"
       :prop="item.prop"
       :label="item.label"
-      :width="item.width"      
+      :width="item.width"            
     ></el-table-column>
     <el-table-column label="操作" fixed="right" width="200">
       <template slot-scope="scope">
@@ -69,6 +71,17 @@ export default {
     LinButton
   },
   methods: {
+    rowStyle({row, rowIndex}) {
+      if(row.status == '到诊'){
+        return 'rowVisit'
+      }
+      if(row.status == '回访'){
+        return 'rowReask'
+      }
+      if(row.status == '预约'){
+        return 'rowOrder'
+      }
+    },
     buttonMethods(func, index, row) {
       const _this = this;
       const { methods } = this.$options;

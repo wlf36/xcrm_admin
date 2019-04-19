@@ -2,6 +2,9 @@ const Customer = () => import('@/views/customer/Customer')
 const CustomerAdd = () => import('@/views/customer/CustomerAdd')
 const CustomerList = () => import('@/views/customer/CustomerList')
 const CustomerExport = () => import('@/views/customer/CustomerExport')
+const CustomerImport = () => import('@/views/customer/CustomerImport')
+const CustomerWhole = () => import('@/views/customer/CustomerWhole')
+const CustomerOwn = () => import('@/views/customer/CustomerOwn')
 
 const CustomerRouter = {
   path: '/customer',
@@ -31,13 +34,51 @@ const CustomerRouter = {
       },
     },
     {
-      path: '/customer/export',
-      component: CustomerExport,
+      path: '/customer/',
+      component: Customer,
       meta: {
         title: '管理数据',
         icon: 'iconfont icon-demo',
         auths: ['导出数据', '导入数据', '统计数据'],
       },
+      children: [
+        {
+          path: '/customer/whole',
+          component: CustomerWhole,
+          meta: {
+            title: '整体数据',
+            icon: 'iconfont icon-demo',
+            auths: ['统计数据'],
+          },
+        },
+        {
+          path: '/customer/own',
+          component: CustomerOwn,
+          meta: {
+            title: '成员数据',
+            icon: 'iconfont icon-demo',
+            auths: ['统计数据'],
+          },
+        },
+        {
+          path: '/customer/export',
+          component: CustomerExport,
+          meta: {
+            title: '导出数据',
+            icon: 'iconfont icon-demo',
+            auths: ['导出数据'],
+          },
+        },
+        {
+          path: '/customer/import',
+          component: CustomerImport,
+          meta: {
+            title: '导入数据',
+            icon: 'iconfont icon-demo',
+            auths: ['导入数据'],
+          },
+        },
+      ],
     },
   ],
 

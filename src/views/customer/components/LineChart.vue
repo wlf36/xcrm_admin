@@ -18,7 +18,7 @@ export default {
     },
     height: {
       type: String,
-      default: '350px'
+      default: '450px'
     },
     autoResize: {
       type: Boolean,
@@ -113,14 +113,34 @@ export default {
           }
         },
         legend: {
-          data: ['预约', '到诊', '咨询', '回访']
+          data: ['咨询', '预约', '到诊', '回访']
         },
         series: [{
+          name: '咨询',
+          smooth: true,
+          type: 'bar',
+          itemStyle: {
+            normal: {
+              color: '#409EFF',
+              lineStyle: {
+                color: '#409EFF',
+                width: 2
+              },
+              areaStyle: {
+                color: '#f3f8ff'
+              }
+            }
+          },
+          data: this._list('create', data),
+          animationDuration: 2800,
+          animationEasing: 'quadraticOut'
+        },
+        {
           name: '预约', itemStyle: {
             normal: {
-              color: '#3888fa',
+              color: '#E6A23C',
               lineStyle: {
-                color: '#3888fa',
+                color: '#E6A23C',
                 width: 2
               }
             }
@@ -137,9 +157,9 @@ export default {
           type: 'bar',
           itemStyle: {
             normal: {
-              color: '#FF005A',
+              color: '#67C23A',
               lineStyle: {
-                color: '#FF005A',
+                color: '#67C23A',
                 width: 2
               },
               areaStyle: {
@@ -150,36 +170,16 @@ export default {
           data: this._list('visit', data),
           animationDuration: 2800,
           animationEasing: 'quadraticOut'
-        },
-        {
-          name: '咨询',
-          smooth: true,
-          type: 'bar',
-          itemStyle: {
-            normal: {
-              color: '#009900',
-              lineStyle: {
-                color: '#009900',
-                width: 2
-              },
-              areaStyle: {
-                color: '#f3f8ff'
-              }
-            }
-          },
-          data: this._list('create', data),
-          animationDuration: 2800,
-          animationEasing: 'quadraticOut'
-        },
+        },        
         {
           name: '回访',
           smooth: true,
           type: 'bar',
           itemStyle: {
             normal: {
-              color: '#FF6600',
+              color: '#F56C6C',
               lineStyle: {
-                color: '#FF6600',
+                color: '#F56C6C',
                 width: 2
               },
               areaStyle: {

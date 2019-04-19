@@ -60,33 +60,64 @@ export default {
   input:-webkit-autofill:active {
     -webkit-transition-delay: 99999s;
     -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
-  }  
-  .el-table .cell{  
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }  
-  .el-table .cell:hover{    
+  }
+  .el-table .cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .el-table .cell:hover {
     // text-overflow:inherit;
-    // overflow:visible; 
-    white-space:normal;
+    // overflow:visible;
+    white-space: normal;
   }
 }
 </style>
 
 <style>
 ::-webkit-scrollbar-track-piece {
-  background-color: #273b6f;
+  background-color: #eee;
 }
 ::-webkit-scrollbar {
   width: 5px;
-  height: 0px;
+  height: 15px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(2, 13, 49, 0.7);
+  background-color: #ccc;
   background-clip: padding-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #bbb;
+  background-color: #aaa;
+}
+</style>
+
+<style>
+.el-table thead tr th .cell {
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+}
+.el-table__body tbody {
+  color: #555;
+  font-weight: 400;
+}
+.customer-list .el-table__body tbody {
+  color: #fff;
+  font-weight: 400;
+}
+.rowVisit {
+  background-color: #67c23a !important;
+}
+.rowReask {
+  background-color: #f56c6c !important;
+}
+.rowOrder {
+  background-color: #e6a23c !important;
+}
+.hover-row > td {
+  background-color: #409eff !important;
+}
+.el-table__fixed::before, .el-table__fixed-right::before{
+  height:0px!important;
 }
 </style>

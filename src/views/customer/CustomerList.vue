@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 列表页面 -->
-    <div class="container" v-if="!showEdit">
+    <div class="container customer-list" v-if="!showEdit">
       <div class="header">
         <div class="header-left">
           <p class="title">客户列表</p>
@@ -42,10 +42,10 @@
           <lin-date-picker @dateChange="handleDateChange" ref="searchDate" class="date"></lin-date-picker>
         </div>
       </div>
-      <!-- 表格 -->
+      <!-- 表格 -->      
       <lin-table
         :tableColumn="tableColumn"
-        :tableData="tableData"
+        :tableData="tableData"        
         :operate="operate"
         :selection="true"
         @handleEdit="handleEdit"
@@ -92,12 +92,17 @@
 
     <!-- 编辑页面 -->
     <!-- <customer-edit v-else @editClose="editClose" :editCustomerID="editCustomerID"></customer-edit> -->
-    <customer-add v-else @editClose="editClose" :showEdit="showEdit" :editCustomerID="editCustomerID"></customer-add>
+    <customer-add
+      v-else
+      @editClose="editClose"
+      :showEdit="showEdit"
+      :editCustomerID="editCustomerID"
+    ></customer-add>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 import User from "@/lin/models/user";
 import customer from "@/lin/models/customer";
 import LinTable from "@/base/table/lin-table";
@@ -122,6 +127,8 @@ export default {
       currentPage: 1, // 默认获取第一页的数据
       pageCount: 10, // 每页10条数据
       loading: false,
+      checkboxList: [],
+      customColumn: [],
       tableColumn: [
         { prop: "name", label: "姓名", width: 95 },
         { prop: "gender", label: "性别", width: 60 },
@@ -129,11 +136,14 @@ export default {
         { prop: "phone", label: "手机", width: 120 },
         { prop: "address", label: "地址", width: 210 },
         { prop: "status", label: "状态", width: 60 },
-        { prop: "disease", label: "疾病", width: 110 },
-        { prop: "order_time", label: "预约时间", width: 110 },
-        { prop: "depart", label: "预约科室", width: 95 },
-        { prop: "source", label: "来源渠道", width: 95 },
+        { prop: "disease", label: "疾病", width: 110 },        
+        { prop: "depart", label: "预约科室", width: 95 },   
+        { prop: "order_time", label: "预约时间", width: 110 },     
+        { prop: "source", label: "来源渠道", width: 95 }, 
+        { prop: "keyword", label: "关键字", width: 150 },       
+        { prop: "keyword", label: "来源地址", width: 150 },        
         { prop: "order_name", label: "录入人员", width: 95 },
+        { prop: "chart_time", label: "咨询时间", width: 160 },
         { prop: "create_time", label: "录入时间", width: 110 },
         { prop: "reask_name", label: "回访人员", width: 95 },
         { prop: "reask_time", label: "回访时间", width: 110 }
@@ -155,17 +165,17 @@ export default {
       reask_user: { id: 0, nickname: "回访人员" }
     };
   },
-  computed: {    
-    ...mapGetters(['user']),
+  computed: {
+    ...mapGetters(["user"])
   },
-  async created() {  
-    // console.log(this.user)  
+  async created() {    
+    // console.log(this.user)
     this.loading = true;
     this.getCustomers();
-    const { isSuper } = this.user
-    if(isSuper) {
+    const { isSuper } = this.user;
+    if (isSuper) {
       this.getReaskUsers();
-    }    
+    }
     this.operate = [
       {
         name: "编辑",
@@ -221,11 +231,11 @@ export default {
       }
     },
     async getReaskUsers() {
-      let res = await User.getReaskUsers()
-      res.map((item)=>{
-        console.log({id:item[0], nickname:item[1]})
-        this.reask_users.push({id:item[0], nickname:item[1]})
-      })
+      let res = await User.getReaskUsers();
+      res.map(item => {
+        console.log({ id: item[0], nickname: item[1] });
+        this.reask_users.push({ id: item[0], nickname: item[1] });
+      });
     },
     onQueryChange(query) {
       this.searchKeyword = query.trim();
@@ -282,8 +292,7 @@ export default {
       let res;
       const currentPage = this.currentPage - 1;
       try {
-        this.loading = true;
-        console.log(status);
+        this.loading = true;        
         res = await customer.getCustomers({
           count: this.pageCount,
           page: currentPage,
@@ -293,6 +302,7 @@ export default {
           start: this.searchDate[0],
           end: this.searchDate[1]
         });
+        console.log(res.collection)
         this.loading = false;
         this.tableData = res.collection;
         this.total_nums = res.total_nums;

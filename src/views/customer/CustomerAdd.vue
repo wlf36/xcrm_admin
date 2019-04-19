@@ -50,6 +50,20 @@
                 ></el-option>
               </el-select>
             </el-form-item>
+            <el-form-item label="关键字" prop="keyword">
+              <el-input v-model="form.keyword" placeholder="请填写关键字"></el-input>
+            </el-form-item>
+            <el-form-item label="来源地址" prop="source_url">
+              <el-input v-model="form.source_url" placeholder="请填写来源地址"></el-input>
+            </el-form-item>
+            <el-form-item label="咨询时间" prop="chat_time">
+              <el-date-picker
+                v-model="form.chat_time"
+                type="datetime"
+                value-format="yyyy-MM-dd HH-mm-ss"
+                placeholder="选择日期时间"
+              ></el-date-picker>
+            </el-form-item>
             <el-form-item class="submit">
               <el-button type="primary" size="medium" @click="submitForm('form')">提交数据</el-button>
             </el-form-item>
@@ -115,11 +129,14 @@ export default {
         phone: "",
         wx_name: "",
         address: "",
-        order_time: "",
+        order_time: null,
         notes: "",
         depart_id: null,
         disease_id: null,
-        source_id: null
+        source_id: null,
+        source_url: "",
+        keyword: "",
+        chat_time: null,
       },
       departs: [],
       diseases: [],
